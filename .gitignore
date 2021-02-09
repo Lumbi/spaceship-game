@@ -1,0 +1,4 @@
+.vs
+build/
+src/.objects/
+.DS_Store
