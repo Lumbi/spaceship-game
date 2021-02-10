@@ -5,6 +5,7 @@
 
 #include "GameContext.hpp"
 #include "PlayerShip.hpp"
+#include "PlayerBullet.hpp"
 
 namespace glb
 {

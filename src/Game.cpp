@@ -12,6 +12,10 @@ int glb::Game::Run()
     playerShip.position.x = 100.0f;
     playerShip.position.y = 100.0f;
 
+    glb::PlayerBullet testPlayerBullet(90.f);
+    testPlayerBullet.position.x = 100.0f;
+    testPlayerBullet.position.y = 100.0f;
+
     while (window.isOpen())
     {
         sf::Time elapsed = clock.restart();
@@ -28,9 +32,11 @@ int glb::Game::Run()
         }
 
         playerShip.update(context, elapsed);
+        testPlayerBullet.update(context, elapsed);
 
         window.clear();
         playerShip.draw(context);
+        testPlayerBullet.draw(context);
         window.display();
     }
 

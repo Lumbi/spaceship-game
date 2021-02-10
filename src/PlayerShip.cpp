@@ -30,13 +30,8 @@ void glb::PlayerShip::update(const GameContext& context, const sf::Time& elapsed
 
     if (context.keyboard.isDown(sf::Keyboard::Up))
     {
-        float rotationRad = rotation * M_PI / 180.f;
         position.x -= 1.0f * elapsedTime.asSeconds();
-        sf::Vector2f up(0.f, -1.f);
-        sf::Vector2f direction(
-            cosf(rotationRad) * up.x - sinf(rotationRad) * up.y,
-            sinf(rotationRad) * up.x + cosf(rotationRad) * up.y
-        );
+        sf::Vector2f direction = glb::Vector2::unit(rotation);
         velocity += direction * acceleration * elapsedTime.asSeconds();
     } else {
         velocity -= velocity * drag * elapsedTime.asSeconds();

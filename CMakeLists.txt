@@ -16,6 +16,7 @@ set(SRC
     src/Keyboard.cpp
     src/GameContext.cpp
     src/PlayerShip.cpp
+    src/PlayerBullet.cpp
 )
 add_executable(${PROJECT_NAME} ${SRC})
 
