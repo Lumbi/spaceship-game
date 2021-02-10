@@ -2,16 +2,19 @@
 
 #include <SFML/System.hpp>
 
-#include "GameContext.hpp"
-
 namespace glb 
 {
+    class GameContext;
+
     class GameObject
     {
         public:
             sf::Vector2f position;
 
-            virtual void update(const GameContext& context, const sf::Time& elapsedTime) {};
-            virtual void draw(const GameContext& context) {};
+            GameObject() {};
+            GameObject(sf::Vector2f position): position(position) {};
+
+            virtual void update(GameContext& context, const sf::Time& elapsedTime) {};
+            virtual void draw(GameContext& context) {};
     };
 }

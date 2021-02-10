@@ -20,10 +20,9 @@ namespace glb
             const float drag = 0.20f;
 
             PlayerShip();
-            ~PlayerShip();
 
-            void update(const GameContext& context, const sf::Time& elapsedTime);
-            void draw(const GameContext& context);
+            void update(GameContext& context, const sf::Time& elapsedTime);
+            void draw(GameContext& context);
 
         private:
             sf::ConvexShape shape;

@@ -1,9 +1,10 @@
 #include "PlayerBullet.hpp"
 
-glb::PlayerBullet::PlayerBullet(float rotation)
-    : 
-    rotation(rotation),
-    velocity(glb::Vector2::unit(rotation) * speed)
+glb::PlayerBullet::PlayerBullet(const PlayerShip& playerShip)
+    :
+    GameObject(playerShip.position),
+    rotation(playerShip.rotation),
+    velocity(glb::Vector2::unit(playerShip.rotation) * speed)
 {
     float width = 4.f;
     float height = 20.f;
@@ -12,14 +13,12 @@ glb::PlayerBullet::PlayerBullet(float rotation)
     shape.setFillColor(sf::Color::White);
 }
 
-glb::PlayerBullet::~PlayerBullet() {}
-
-void glb::PlayerBullet::update(const GameContext& context, const sf::Time& elapsedTime)
+void glb::PlayerBullet::update(GameContext& context, const sf::Time& elapsedTime)
 {
     position += velocity * elapsedTime.asSeconds();
 }
 
-void glb::PlayerBullet::draw(const GameContext& context)
+void glb::PlayerBullet::draw(GameContext& context)
 {
     shape.setPosition(position);
     context.window.draw(shape);

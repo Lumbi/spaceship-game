@@ -1,6 +1,8 @@
 #pragma once
 
+#include "GameContext.hpp"
 #include "GameObject.hpp"
+#include "PlayerShip.hpp"
 #include "Vector2Utility.hpp"
 
 namespace glb
@@ -8,16 +10,15 @@ namespace glb
     class PlayerBullet: public GameObject
     {
         public:
-            PlayerBullet(const float rotation);
-            ~PlayerBullet();
+            PlayerBullet(const PlayerShip&);
 
-            void update(const GameContext& context, const sf::Time& elapsedTime);
-            void draw(const GameContext& context);
+            void update(GameContext& context, const sf::Time& elapsedTime);
+            void draw(GameContext& context);
 
         private:
             sf::RectangleShape shape;
             const float rotation = 0;
-            const float speed = 1000.f;
+            const float speed = 1400.f;
             const sf::Vector2f velocity;
     };
 }

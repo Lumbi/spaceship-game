@@ -8,13 +8,14 @@ int glb::Game::Run()
     glb::GameContext context(window);
     sf::Clock clock;
 
-    glb::PlayerShip playerShip;
-    playerShip.position.x = 100.0f;
-    playerShip.position.y = 100.0f;
+    auto playerShip = std::make_unique<PlayerShip>();
+    playerShip->position.x = 100.0f;
+    playerShip->position.y = 100.0f;
 
-    glb::PlayerBullet testPlayerBullet(90.f);
-    testPlayerBullet.position.x = 100.0f;
-    testPlayerBullet.position.y = 100.0f;
+    auto playerWeapon = std::make_unique<PlayerWeapon>(*playerShip.get());
+
+    context.add(std::move(playerShip));
+    context.add(std::move(playerWeapon));
 
     while (window.isOpen())
     {
@@ -31,12 +32,10 @@ int glb::Game::Run()
             }
         }
 
-        playerShip.update(context, elapsed);
-        testPlayerBullet.update(context, elapsed);
+        context.update(elapsed);
 
         window.clear();
-        playerShip.draw(context);
-        testPlayerBullet.draw(context);
+        context.draw();
         window.display();
     }
 

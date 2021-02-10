@@ -13,12 +13,7 @@ glb::PlayerShip::PlayerShip()
     shape.setPoint(2, sf::Vector2f(width / 2.0f, height / 2.0f));
 }
 
-glb::PlayerShip::~PlayerShip()
-{
-
-}
-
-void glb::PlayerShip::update(const GameContext& context, const sf::Time& elapsedTime)
+void glb::PlayerShip::update(GameContext& context, const sf::Time& elapsedTime)
 {
     if (context.keyboard.isDown(sf::Keyboard::Left)) {
         rotation -= angularVelocity * elapsedTime.asSeconds();
@@ -40,7 +35,7 @@ void glb::PlayerShip::update(const GameContext& context, const sf::Time& elapsed
     position += velocity * elapsedTime.asSeconds();
 }
 
-void glb::PlayerShip::draw(const GameContext& context)
+void glb::PlayerShip::draw(GameContext& context)
 {
     shape.setPosition(position);
     shape.setRotation(rotation);

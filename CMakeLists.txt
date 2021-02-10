@@ -15,6 +15,7 @@ set(SRC
     src/Game.cpp
     src/Keyboard.cpp
     src/GameContext.cpp
+    src/PlayerWeapon.cpp
     src/PlayerShip.cpp
     src/PlayerBullet.cpp
 )
