@@ -6,5 +6,6 @@
         "queue": "cpp",
         "stack": "cpp",
         "vector": "cpp"
-    }
+    },
+    "cmake.configureOnOpen": true
 }
