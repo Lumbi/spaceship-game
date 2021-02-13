@@ -1,5 +1,7 @@
 #include "Game.hpp"
 
+void addDebris(glb::GameContext& context);
+
 int glb::Game::Run()
 {
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "Game", sf::Style::Titlebar | sf::Style::Close);
@@ -16,6 +18,8 @@ int glb::Game::Run()
 
     context.add(std::move(playerShip));
     context.add(std::move(playerWeapon));
+
+    addDebris(context);
 
     while (window.isOpen())
     {
@@ -40,4 +44,27 @@ int glb::Game::Run()
     }
 
     return 0;
+}
+
+void addDebris(glb::GameContext& context)
+{
+    auto debris = std::make_unique<glb::Debris>();
+    debris->position.x = 100.f;
+    debris->position.y = 200.f;
+    context.add(std::move(debris));
+
+    debris = std::make_unique<glb::Debris>();
+    debris->position.x = 300.f;
+    debris->position.y = 250.f;
+    context.add(std::move(debris));
+
+    debris = std::make_unique<glb::Debris>();
+    debris->position.x = 600.f;
+    debris->position.y = 150.f;
+    context.add(std::move(debris));
+
+    debris = std::make_unique<glb::Debris>();
+    debris->position.x = 800.f;
+    debris->position.y = 550.f;
+    context.add(std::move(debris));
 }

@@ -18,6 +18,7 @@ set(SRC
     src/PlayerWeapon.cpp
     src/PlayerShip.cpp
     src/PlayerBullet.cpp
+    src/Debris.cpp
 )
 add_executable(${PROJECT_NAME} ${SRC})
 
