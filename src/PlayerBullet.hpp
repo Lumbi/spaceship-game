@@ -20,5 +20,6 @@ namespace glb
             const float rotation = 0;
             const float speed = 1400.f;
             const sf::Vector2f velocity;
+            float ttl = 0.5f;
     };
 }

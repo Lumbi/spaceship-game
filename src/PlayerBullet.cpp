@@ -16,6 +16,8 @@ glb::PlayerBullet::PlayerBullet(const PlayerShip& playerShip)
 void glb::PlayerBullet::update(GameContext& context, const sf::Time& elapsedTime)
 {
     position += velocity * elapsedTime.asSeconds();
+    ttl -= elapsedTime.asSeconds();
+    if (ttl <= 0) { kill(); }
 }
 
 void glb::PlayerBullet::draw(GameContext& context)

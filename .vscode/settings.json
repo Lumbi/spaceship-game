@@ -4,6 +4,7 @@
         "deque": "cpp",
         "iomanip": "cpp",
         "queue": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "vector": "cpp"
     }
 }

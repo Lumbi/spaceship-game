@@ -1,7 +1,7 @@
 #include "GameContext.hpp"
 
 glb::GameContext::GameContext(sf::RenderWindow& window)
-    : window(window) 
+    : window(window)
 {
 
 }
@@ -15,9 +15,18 @@ void glb::GameContext::update(const sf::Time& time)
         gameObjectsToAdd.erase(it);
     }
 
-    for (auto it = gameObjects.begin(); it != gameObjects.end(); it++)
+    auto it = gameObjects.begin();
+    while (it != gameObjects.end())
     {
-        it->get()->update(*this, time);
+        if (it->get()->isAlive())
+        {
+            it->get()->update(*this, time);
+            it++;
+        }
+        else
+        {
+            it = gameObjects.erase(it);
+        }
     }
 }
 
@@ -25,7 +34,10 @@ void glb::GameContext::draw()
 {
     for (auto it = gameObjects.begin(); it != gameObjects.end(); it++)
     {
-        it->get()->draw(*this);
+        if (it->get()->isAlive())
+        {
+            it->get()->draw(*this);
+        }
     }
 }
 

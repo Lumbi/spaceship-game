@@ -2,7 +2,7 @@
 
 #include <SFML/System.hpp>
 
-namespace glb 
+namespace glb
 {
     class GameContext;
 
@@ -16,5 +16,11 @@ namespace glb
 
             virtual void update(GameContext& context, const sf::Time& elapsedTime) {};
             virtual void draw(GameContext& context) {};
+
+            bool isAlive() { return alive; }
+            virtual void kill() { alive = false; }
+
+        private:
+            bool alive = true;
     };
 }
