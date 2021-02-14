@@ -5,6 +5,7 @@
 #include "PlayerShip.hpp"
 #include "Vector2Utility.hpp"
 #include "Collider.hpp"
+#include "Debris.hpp"
 
 namespace glb
 {
@@ -15,13 +16,14 @@ namespace glb
 
             void update(GameContext& context, const sf::Time& elapsedTime);
             void draw(GameContext& context);
-            void collide(const GameObject&);
+            void collide(GameObject* const);
 
         private:
             sf::RectangleShape shape;
-            const float rotation = 0;
+            float rotation = 0;
             const float speed = 1400.f;
-            const sf::Vector2f velocity;
+            sf::Vector2f velocity;
             float ttl = 0.5f;
+            const float maxTtl = 2.f;
     };
 }

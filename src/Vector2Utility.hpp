@@ -13,7 +13,7 @@ namespace glb
         template<typename T>
         static sf::Vector2<T> unit(const T angleDeg = 0.f)
         {
-            const float angleRad = angleDeg * M_PI / 180.f;
+            const float angleRad = angleDeg * M_PI / static_cast<T>(180);
             const float cosine = cos(angleRad);
             const float sine = sin(angleRad);
             auto up = glb::Vector2::up<T>;
@@ -27,6 +27,12 @@ namespace glb
         T magnitude(const sf::Vector2<T>& vector2)
         {
             return sqrt(vector2.x * vector2.x + vector2.y * vector2.y);
+        }
+
+        template<typename T>
+        T angle(const sf::Vector2<T>& vector2)
+        {
+            return static_cast<T>(90) + atan2(vector2.y, vector2.x) * static_cast<T>(180) / M_PI;
         }
 
         template<typename T>

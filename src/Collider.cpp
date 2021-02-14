@@ -21,6 +21,12 @@ bool glb::Collider::collides(const Collider& other)
     return false;
 }
 
+// POINT COLLIDER
+
+sf::FloatRect glb::PointCollider::boundingRect() const
+{
+    return sf::FloatRect(point, sf::Vector2f(0.f, 0.f));
+}
 
 bool glb::PointCollider::collides(const sf::FloatRect& rect)
 {
@@ -29,15 +35,22 @@ bool glb::PointCollider::collides(const sf::FloatRect& rect)
 
 void glb::PointCollider::draw(sf::RenderWindow& window)
 {
-    auto circle = sf::CircleShape(50.f);
+    sf::CircleShape circle(5.f);
     circle.setPosition(point);
     circle.setFillColor(sf::Color::Red);
     window.draw(circle);
 }
 
+// CONVEX SHAPE COLLIDER
+
+sf::FloatRect glb::ConvexShapeCollider::boundingRect() const
+{
+    return shape.getGlobalBounds();
+}
+
 bool glb::ConvexShapeCollider::collides(const sf::Vector2f& point)
 {
-    return shape.getGlobalBounds().contains(point);
+    return boundingRect().contains(point);
 }
 
 void glb::ConvexShapeCollider::draw(sf::RenderWindow& window)

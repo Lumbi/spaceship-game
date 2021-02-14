@@ -41,8 +41,8 @@ void glb::GameContext::update(const sf::Time& time)
                 bool collided = first->collider->collides(*second->collider);
                 if (collided)
                 {
-                    first->collide(*second);
-                    second->collide(*first);
+                    first->collide(second.get());
+                    second->collide(first.get());
                 }
             }
         }

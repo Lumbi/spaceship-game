@@ -20,7 +20,7 @@ namespace glb
 
             virtual void update(GameContext& context, const sf::Time& elapsedTime) {};
             virtual void draw(GameContext& context) {};
-            virtual void collide(const GameObject&) {};
+            virtual void collide(GameObject* const) {};
 
             bool isAlive() { return alive; }
             virtual void kill() { alive = false; }

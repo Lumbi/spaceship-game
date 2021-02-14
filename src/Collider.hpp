@@ -8,6 +8,7 @@ namespace glb
     {
         public:
             Collider() {};
+            virtual sf::FloatRect boundingRect() const { return sf::FloatRect(0.f, 0.f, 0.f, 0.f); };
             bool collides(const Collider&);
             virtual void draw(sf::RenderWindow& window) {};
 
@@ -20,6 +21,7 @@ namespace glb
     {
         public:
             const sf::Vector2f& point;
+            sf::FloatRect boundingRect() const;
             PointCollider(const sf::Vector2f& point): point(point) {};
             void draw(sf::RenderWindow& window);
 
@@ -31,6 +33,7 @@ namespace glb
     {
         public:
             const sf::ConvexShape& shape;
+            sf::FloatRect boundingRect() const;
             ConvexShapeCollider(const sf::ConvexShape& shape): shape(shape) {};
             void draw(sf::RenderWindow& window);
 
