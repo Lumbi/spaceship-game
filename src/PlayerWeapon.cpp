@@ -1,7 +1,9 @@
 #include "PlayerWeapon.hpp"
 
 glb::PlayerWeapon::PlayerWeapon(const PlayerShip& playerShip)
-    : playerShip(playerShip)
+    :
+    GameObject(sf::Vector2f(0.f, 0.f)),
+    playerShip(playerShip)
 {
 
 }
@@ -9,7 +11,7 @@ glb::PlayerWeapon::PlayerWeapon(const PlayerShip& playerShip)
 void glb::PlayerWeapon::update(GameContext& context, const sf::Time& elapsedTime)
 {
     timeElapsedSinceLastFire += elapsedTime.asSeconds();
-    if (context.keyboard.isDown(sf::Keyboard::Z)) 
+    if (context.keyboard.isDown(sf::Keyboard::Z))
     {
         if (timeElapsedSinceLastFire > 1.f / fireRate)
         {
@@ -21,6 +23,6 @@ void glb::PlayerWeapon::update(GameContext& context, const sf::Time& elapsedTime
 void glb::PlayerWeapon::fire(GameContext& context)
 {
     timeElapsedSinceLastFire = 0.f;
-    std::unique_ptr<GameObject> bullet(new PlayerBullet(playerShip));
+    auto bullet = std::make_unique<glb::PlayerBullet>(playerShip);
     context.add(std::move(bullet));
 }

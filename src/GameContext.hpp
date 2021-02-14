@@ -9,7 +9,7 @@
 
 namespace glb
 {
-    class GameContext 
+    class GameContext
     {
         public:
             sf::RenderWindow& window;

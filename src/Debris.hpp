@@ -10,7 +10,7 @@ namespace glb
     class Debris: public GameObject
     {
         public:
-            Debris();
+            Debris(const sf::Vector2f& position);
 
             void update(GameContext& context, const sf::Time& elapsedTime);
             void draw(GameContext& context);

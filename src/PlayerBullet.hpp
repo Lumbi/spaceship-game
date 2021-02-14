@@ -4,6 +4,7 @@
 #include "GameObject.hpp"
 #include "PlayerShip.hpp"
 #include "Vector2Utility.hpp"
+#include "Collider.hpp"
 
 namespace glb
 {
@@ -14,6 +15,7 @@ namespace glb
 
             void update(GameContext& context, const sf::Time& elapsedTime);
             void draw(GameContext& context);
+            void collide(const GameObject&);
 
         private:
             sf::RectangleShape shape;

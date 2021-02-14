@@ -5,7 +5,8 @@
         "iomanip": "cpp",
         "queue": "cpp",
         "stack": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "memory": "cpp"
     },
     "cmake.configureOnOpen": true
 }

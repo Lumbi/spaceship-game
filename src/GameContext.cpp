@@ -8,6 +8,7 @@ glb::GameContext::GameContext(sf::RenderWindow& window)
 
 void glb::GameContext::update(const sf::Time& time)
 {
+    // Add new game objects
     while (!gameObjectsToAdd.empty())
     {
         auto it = gameObjectsToAdd.begin();
@@ -15,6 +16,7 @@ void glb::GameContext::update(const sf::Time& time)
         gameObjectsToAdd.erase(it);
     }
 
+    // Update game objects and removed killed game objects
     auto it = gameObjects.begin();
     while (it != gameObjects.end())
     {
@@ -26,6 +28,23 @@ void glb::GameContext::update(const sf::Time& time)
         else
         {
             it = gameObjects.erase(it);
+        }
+    }
+
+    // Check collisions
+    for (const auto& first : gameObjects)
+    {
+        for (const auto& second : gameObjects)
+        {
+            if (first != second && first->collider && second->collider)
+            {
+                bool collided = first->collider->collides(*second->collider);
+                if (collided)
+                {
+                    first->collide(*second);
+                    second->collide(*first);
+                }
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 #include "PlayerShip.hpp"
 
 glb::PlayerShip::PlayerShip()
+    : GameObject(sf::Vector2f(0.f, 0.f))
 {
     float width = 20.0f;
     float height = 40.0f;

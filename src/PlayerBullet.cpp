@@ -6,6 +6,8 @@ glb::PlayerBullet::PlayerBullet(const PlayerShip& playerShip)
     rotation(playerShip.rotation),
     velocity(glb::Vector2::unit(playerShip.rotation) * speed)
 {
+    collider = std::make_unique<PointCollider>(position);
+
     float width = 4.f;
     float height = 20.f;
     shape = sf::RectangleShape(sf::Vector2f(width, height));
@@ -15,9 +17,15 @@ glb::PlayerBullet::PlayerBullet(const PlayerShip& playerShip)
 
 void glb::PlayerBullet::update(GameContext& context, const sf::Time& elapsedTime)
 {
-    position += velocity * elapsedTime.asSeconds();
     ttl -= elapsedTime.asSeconds();
-    if (ttl <= 0) { kill(); }
+    if (ttl <= 0) { kill(); return; }
+
+    position += velocity * elapsedTime.asSeconds();
+}
+
+void glb::PlayerBullet::collide(const GameObject& other)
+{
+    kill();
 }
 
 void glb::PlayerBullet::draw(GameContext& context)

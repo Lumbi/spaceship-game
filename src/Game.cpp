@@ -48,23 +48,15 @@ int glb::Game::Run()
 
 void addDebris(glb::GameContext& context)
 {
-    auto debris = std::make_unique<glb::Debris>();
-    debris->position.x = 100.f;
-    debris->position.y = 200.f;
+    auto debris = std::make_unique<glb::Debris>(sf::Vector2f(100.f, 200.f));
     context.add(std::move(debris));
 
-    debris = std::make_unique<glb::Debris>();
-    debris->position.x = 300.f;
-    debris->position.y = 250.f;
+    debris = std::make_unique<glb::Debris>(sf::Vector2f(300.f, 250.f));
     context.add(std::move(debris));
 
-    debris = std::make_unique<glb::Debris>();
-    debris->position.x = 600.f;
-    debris->position.y = 150.f;
+    debris = std::make_unique<glb::Debris>(sf::Vector2f(600.f, 150.f));
     context.add(std::move(debris));
 
-    debris = std::make_unique<glb::Debris>();
-    debris->position.x = 800.f;
-    debris->position.y = 550.f;
+    debris = std::make_unique<glb::Debris>(sf::Vector2f(800.f, 550.f));
     context.add(std::move(debris));
 }
