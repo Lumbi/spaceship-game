@@ -25,7 +25,24 @@ void glb::PlayerBullet::update(GameContext& context, const sf::Time& elapsedTime
 
 void glb::PlayerBullet::collide(GameObject* const other)
 {
-    sf::FloatRect otherRect = other->collider->boundingRect();
+    auto debris = dynamic_cast<Debris* const>(other);
+    if (debris)
+    {
+        collide(debris);
+        return;
+    }
+
+    auto enemyShip = dynamic_cast<EnemyShip* const>(other);
+    if (enemyShip)
+    {
+        collide(enemyShip);
+        return;
+    }
+}
+
+void glb::PlayerBullet::collide(Debris* const debris)
+{
+    sf::FloatRect otherRect = debris->collider->boundingRect();
     sf::Vector2f updatedVelocity = velocity;
 
     float topPenetration = std::abs(position.y - otherRect.top);
@@ -66,6 +83,11 @@ void glb::PlayerBullet::collide(GameObject* const other)
             position.y += (bottomPenetration + 1.f);
         }
     }
+}
+
+void glb::PlayerBullet::collide(EnemyShip* const enemyShip)
+{
+    kill();
 }
 
 void glb::PlayerBullet::draw(GameContext& context)

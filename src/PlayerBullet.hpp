@@ -5,6 +5,7 @@
 #include "PlayerShip.hpp"
 #include "Vector2Utility.hpp"
 #include "Collider.hpp"
+#include "EnemyShip.hpp"
 #include "Debris.hpp"
 
 namespace glb
@@ -25,5 +26,8 @@ namespace glb
             sf::Vector2f velocity;
             float ttl = 0.5f;
             const float maxTtl = 2.f;
+
+            void collide(EnemyShip* const);
+            void collide(Debris* const);
     };
 }

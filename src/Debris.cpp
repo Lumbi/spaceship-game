@@ -17,7 +17,7 @@ sf::ConvexShape createRandomShape()
 glb::Debris::Debris(const sf::Vector2f& position):
     GameObject(position)
 {
-    collider = std::make_unique<ConvexShapeCollider>(shape);
+    collider = std::make_unique<ShapeCollider>(shape);
     shape = createRandomShape();
 }
 

@@ -10,8 +10,8 @@ bool glb::Collider::collides(const Collider& other)
             return collides(casted.point);
         }
         {
-            auto casted = dynamic_cast<const ConvexShapeCollider&>(other);
-            return collides(casted.shape.getGlobalBounds());
+            auto casted = dynamic_cast<const ShapeCollider&>(other);
+            return collides(casted.boundingRect());
         }
     }
     catch (const std::bad_cast& e)
@@ -22,11 +22,6 @@ bool glb::Collider::collides(const Collider& other)
 }
 
 // POINT COLLIDER
-
-sf::FloatRect glb::PointCollider::boundingRect() const
-{
-    return sf::FloatRect(point, sf::Vector2f(0.f, 0.f));
-}
 
 bool glb::PointCollider::collides(const sf::FloatRect& rect)
 {
@@ -43,17 +38,17 @@ void glb::PointCollider::draw(sf::RenderWindow& window)
 
 // CONVEX SHAPE COLLIDER
 
-sf::FloatRect glb::ConvexShapeCollider::boundingRect() const
+sf::FloatRect glb::ShapeCollider::boundingRect() const
 {
     return shape.getGlobalBounds();
 }
 
-bool glb::ConvexShapeCollider::collides(const sf::Vector2f& point)
+bool glb::ShapeCollider::collides(const sf::Vector2f& point)
 {
     return boundingRect().contains(point);
 }
 
-void glb::ConvexShapeCollider::draw(sf::RenderWindow& window)
+void glb::ShapeCollider::draw(sf::RenderWindow& window)
 {
 
 }

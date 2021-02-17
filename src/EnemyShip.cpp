@@ -8,11 +8,12 @@ glb::EnemyShip::EnemyShip()
     shape.setOutlineColor(sf::Color::Red);
     shape.setOutlineThickness(2.f);
     shape.setOrigin(-shape.getSize() / 2.f);
+
+    collider = std::make_unique<ShapeCollider>(shape);
 }
 
 void glb::EnemyShip::update(GameContext& context, const sf::Time& elapsedTime)
 {
-
 }
 
 void glb::EnemyShip::draw(GameContext& context)
