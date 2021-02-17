@@ -4,18 +4,27 @@ void addDebris(glb::GameContext& context);
 
 int glb::Game::Run()
 {
-    sf::RenderWindow window(sf::VideoMode(1920, 1080), "Game", sf::Style::Titlebar | sf::Style::Close);
+    const float windowWidth = 1920, windowHeight = 1080;
+    sf::RenderWindow window(
+        sf::VideoMode(windowWidth, windowHeight),
+        "Game",
+        sf::Style::Titlebar | sf::Style::Close
+    );
     window.setVerticalSyncEnabled(true);
 
     glb::GameContext context(window);
     sf::Clock clock;
 
+    auto camera = std::make_unique<Camera>(sf::Vector2f(windowWidth, windowHeight));
+
     auto playerShip = std::make_unique<PlayerShip>();
     playerShip->position.x = 100.0f;
     playerShip->position.y = 100.0f;
+    camera->follow(playerShip.get());
 
     auto playerWeapon = std::make_unique<PlayerWeapon>(*playerShip.get());
 
+    context.add(std::move(camera));
     context.add(std::move(playerShip));
     context.add(std::move(playerWeapon));
 

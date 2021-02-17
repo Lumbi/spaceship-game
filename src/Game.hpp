@@ -4,6 +4,7 @@
 #include <SFML/System.hpp>
 
 #include "GameContext.hpp"
+#include "Camera.hpp"
 #include "PlayerShip.hpp"
 #include "PlayerBullet.hpp"
 #include "PlayerWeapon.hpp"
