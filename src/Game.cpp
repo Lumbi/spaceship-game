@@ -65,8 +65,8 @@ void addEnemyShips(glb::GameContext& context)
     context.add(std::move(enemyShip));
 
     enemyShip = std::make_unique<glb::EnemyShip>();
-    enemyShip->position.x = -200.f;
-    enemyShip->position.y = -150.f;
+    enemyShip->position.x = 250.f;
+    enemyShip->position.y = 130.f;
     context.add(std::move(enemyShip));
 
     enemyShip = std::make_unique<glb::EnemyShip>();
@@ -80,7 +80,7 @@ void addDebris(glb::GameContext& context)
     auto debris = std::make_unique<glb::Debris>(sf::Vector2f(100.f, 200.f));
     context.add(std::move(debris));
 
-    debris = std::make_unique<glb::Debris>(sf::Vector2f(300.f, 250.f));
+    debris = std::make_unique<glb::Debris>(sf::Vector2f(-300.f, -250.f));
     context.add(std::move(debris));
 
     debris = std::make_unique<glb::Debris>(sf::Vector2f(600.f, 150.f));
