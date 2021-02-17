@@ -2,7 +2,8 @@
 
 glb::EnemyShip::EnemyShip()
     : GameObject(sf::Vector2f()),
-      shape(sf::Vector2f(30.f, 30.f))
+      shape(sf::Vector2f(40.f, 40.f)),
+      hitAnim(shape)
 {
     shape.setFillColor(sf::Color::Transparent);
     shape.setOutlineColor(sf::Color::Red);
@@ -14,6 +15,12 @@ glb::EnemyShip::EnemyShip()
 
 void glb::EnemyShip::update(GameContext& context, const sf::Time& elapsedTime)
 {
+    hitAnim.animate(elapsedTime);
+}
+
+void glb::EnemyShip::collide(GameObject* const other)
+{
+    hitAnim.play();
 }
 
 void glb::EnemyShip::draw(GameContext& context)

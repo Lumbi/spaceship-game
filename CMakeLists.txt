@@ -22,6 +22,7 @@ set(SRC
     src/PlayerBullet.cpp
     src/EnemyShip.cpp
     src/Debris.cpp
+    src/EnemyHitAnimation.cpp
 )
 add_executable(${PROJECT_NAME} ${SRC})
 

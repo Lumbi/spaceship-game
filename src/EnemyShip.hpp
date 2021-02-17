@@ -4,6 +4,7 @@
 
 #include "GameContext.hpp"
 #include "GameObject.hpp"
+#include "EnemyHitAnimation.hpp"
 
 namespace glb
 {
@@ -14,8 +15,10 @@ namespace glb
 
             void update(GameContext& context, const sf::Time& elapsedTime);
             void draw(GameContext& context);
+            void collide(GameObject* const);
 
         private:
             sf::RectangleShape shape;
+            EnemyHitAnimation hitAnim;
     };
 }
