@@ -8,6 +8,7 @@
 #include "PlayerShip.hpp"
 #include "PlayerBullet.hpp"
 #include "PlayerWeapon.hpp"
+#include "EnemyShip.hpp"
 #include "Debris.hpp"
 
 namespace glb
