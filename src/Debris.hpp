@@ -4,6 +4,7 @@
 
 #include "GameContext.hpp"
 #include "GameObject.hpp"
+#include "ShapeSprite.hpp"
 
 namespace glb
 {
@@ -17,5 +18,6 @@ namespace glb
 
         private:
             sf::ConvexShape shape;
+            glb::ShapeSprite sprite;
     };
 }

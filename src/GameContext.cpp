@@ -3,7 +3,6 @@
 glb::GameContext::GameContext(sf::RenderWindow& window)
     : window(window)
 {
-
 }
 
 void glb::GameContext::update(const sf::Time& time)
@@ -51,6 +50,7 @@ void glb::GameContext::update(const sf::Time& time)
 
 void glb::GameContext::draw()
 {
+    window.clear();
     for (auto it = gameObjects.begin(); it != gameObjects.end(); it++)
     {
         if (it->get()->isAlive())
@@ -58,6 +58,13 @@ void glb::GameContext::draw()
             it->get()->draw(*this);
         }
     }
+    window.display();
+}
+
+void glb::GameContext::draw(const sf::Sprite& sprite)
+{
+    bloomShader.setTexture(*sprite.getTexture());
+    window.draw(sprite, &bloomShader);
 }
 
 void glb::GameContext::add(std::unique_ptr<GameObject> gameObject)

@@ -12,6 +12,8 @@ glb::PlayerShip::PlayerShip()
     shape.setPoint(0, sf::Vector2f(- width / 2.0f, height / 2.0f));
     shape.setPoint(1, sf::Vector2f(0, - height / 2.0f));
     shape.setPoint(2, sf::Vector2f(width / 2.0f, height / 2.0f));
+
+    sprite.setShape(shape);
 }
 
 void glb::PlayerShip::update(GameContext& context, const sf::Time& elapsedTime)
@@ -38,7 +40,7 @@ void glb::PlayerShip::update(GameContext& context, const sf::Time& elapsedTime)
 
 void glb::PlayerShip::draw(GameContext& context)
 {
-    shape.setPosition(position);
-    shape.setRotation(rotation);
-    context.window.draw(shape);
+    sprite.setPosition(position);
+    sprite.setRotation(rotation);
+    context.draw(sprite);
 }

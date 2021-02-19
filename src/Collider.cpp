@@ -50,5 +50,5 @@ bool glb::ShapeCollider::collides(const sf::Vector2f& point)
 
 void glb::ShapeCollider::draw(sf::RenderWindow& window)
 {
-
+    window.draw(shape);
 }
