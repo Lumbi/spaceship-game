@@ -16,7 +16,7 @@ void glb::Camera::update(GameContext& context, const sf::Time& elapsedTime)
 
 void glb::Camera::draw(GameContext& context)
 {
-    context.window.setView(view);
+    context.setView(view);
 }
 
 void glb::Camera::follow(const GameObject* const target)

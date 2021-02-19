@@ -48,10 +48,7 @@ int glb::Game::Run()
         }
 
         context.update(elapsed);
-
-        window.clear();
         context.draw();
-        window.display();
     }
 
     return 0;

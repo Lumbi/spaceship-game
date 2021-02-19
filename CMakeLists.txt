@@ -17,6 +17,8 @@ set(SRC
     src/GameContext.cpp
     src/Collider.cpp
     src/Camera.cpp
+    src/ShapeSprite.cpp
+    src/BloomEffect.cpp
     src/PlayerWeapon.cpp
     src/PlayerShip.cpp
     src/PlayerBullet.cpp

@@ -94,5 +94,5 @@ void glb::PlayerBullet::draw(GameContext& context)
 {
     shape.setPosition(position);
     shape.setRotation(rotation);
-    context.window.draw(shape);
+    context.draw(shape);
 }

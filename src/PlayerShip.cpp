@@ -40,5 +40,5 @@ void glb::PlayerShip::draw(GameContext& context)
 {
     shape.setPosition(position);
     shape.setRotation(rotation);
-    context.window.draw(shape);
+    context.draw(shape);
 }

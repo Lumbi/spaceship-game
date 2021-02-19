@@ -11,6 +11,7 @@ sf::ConvexShape createRandomShape()
     shape.setPoint(2, sf::Vector2f(120, 90));
     shape.setPoint(3, sf::Vector2f(30, 100));
     shape.setPoint(4, sf::Vector2f(0, 50));
+    shape.setOrigin(75.f, 50.f);
     return shape;
 }
 
@@ -23,11 +24,11 @@ glb::Debris::Debris(const sf::Vector2f& position):
 
 void glb::Debris::update(GameContext& context, const sf::Time& elapsed)
 {
-
+    shape.setPosition(position);
 }
 
 void glb::Debris::draw(GameContext& context)
 {
     shape.setPosition(position);
-    context.window.draw(shape);
+    context.draw(shape);
 }
