@@ -6,6 +6,8 @@
 #include "GameObject.hpp"
 #include "EnemyHitAnimation.hpp"
 #include "Vector2Utility.hpp"
+#include "EnemyWeapon.hpp"
+#include "PlayerBullet.hpp"
 
 namespace glb
 {
@@ -14,6 +16,7 @@ namespace glb
         public:
             EnemyShip();
 
+            void start(GameContext& context);
             void update(GameContext& context, const sf::Time& elapsedTime);
             void draw(GameContext& context);
             void collide(GameObject* const);

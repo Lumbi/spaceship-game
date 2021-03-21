@@ -1,19 +1,16 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
+
 #include "GameContext.hpp"
 #include "GameObject.hpp"
 
 namespace glb
 {
-    class PlayerShip;
-    class EnemyShip;
-    class Debris;
-    class Collider;
-
-    class PlayerBullet: public GameObject
+    class EnemyBullet: public GameObject
     {
         public:
-            PlayerBullet(const PlayerShip&);
+            EnemyBullet(const sf::Vector2f& position, const float rotation);
 
             void update(GameContext& context, const sf::Time& elapsedTime);
             void draw(GameContext& context);
@@ -22,12 +19,8 @@ namespace glb
         private:
             sf::RectangleShape shape;
             float rotation = 0;
-            const float speed = 1400.f;
+            const float speed = 400.f;
             sf::Vector2f velocity;
-            float ttl = 0.5f;
-            const float maxTtl = 2.f;
-
-            void collide(EnemyShip* const);
-            void collide(Debris* const);
+            float ttl = 3.f;
     };
 }

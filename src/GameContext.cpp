@@ -13,6 +13,7 @@ void glb::GameContext::update(const sf::Time& time)
     while (!gameObjectsToAdd.empty())
     {
         auto it = gameObjectsToAdd.begin();
+        it->get()->start(*this);
         gameObjects.push_back(std::move(*it));
         gameObjectsToAdd.erase(it);
     }

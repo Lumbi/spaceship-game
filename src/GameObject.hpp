@@ -18,6 +18,7 @@ namespace glb
 
             GameObject(sf::Vector2f position): position(position) {};
 
+            virtual void start(GameContext& context) {};
             virtual void update(GameContext& context, const sf::Time& elapsedTime) {};
             virtual void draw(GameContext& context) {};
             virtual void collide(GameObject* const) {};
