@@ -14,11 +14,13 @@ void glb::EnemyHitAnimation::stop()
 void glb::EnemyHitAnimation::animate(const sf::Time& elapsedTime)
 {
     if (!isPlaying) { return; }
-    const sf::Uint8 alpha = sf::Uint8(255.f * (duration - time) / duration);
+    const float ratio = std::max((duration - time) / duration, 0.f);
+    const sf::Uint8 alpha = sf::Uint8(255.f * ratio);
     enemyShape.setFillColor(sf::Color(255, 0, 0, alpha));
-    time += elapsedTime.asSeconds();
-    if (time >= duration)
+    if (time < duration)
     {
+        time += elapsedTime.asSeconds();
+    } else {
         stop();
     }
 }
