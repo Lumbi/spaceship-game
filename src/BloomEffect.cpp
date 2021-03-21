@@ -79,7 +79,7 @@ void glb::BloomEffect::render(const sf::Texture& texture)
     //       Right now I'd like to work on more important gameplay
     //       mechanics so I'll leave the blur to that.
     bool horizontal = true, firstIteration = true;
-    int blurPassCount = 4;
+    int blurPassCount = 3;
     blurShader.setUniform("tex_width", float(texture.getSize().x));
     blurShader.setUniform("tex_height", float(texture.getSize().y));
 
