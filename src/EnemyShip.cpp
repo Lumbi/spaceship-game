@@ -16,6 +16,20 @@ glb::EnemyShip::EnemyShip()
 void glb::EnemyShip::update(GameContext& context, const sf::Time& elapsedTime)
 {
     hitAnim.animate(elapsedTime);
+
+    // Follow player
+    if (followTarget) {
+        sf::Vector2f distanceToTarget = followTarget->position - position;
+        if (glb::Vector2::magnitude(distanceToTarget) > 300.f) {
+            sf::Vector2f direction = glb::Vector2::unit(distanceToTarget);
+            velocity += direction * acceleration * elapsedTime.asSeconds();
+        } else {
+            velocity -= velocity * drag * elapsedTime.asSeconds();
+        }
+    }
+
+    glb::Vector2::clamp(velocity, 0.f, maxSpeed);
+    position += velocity * elapsedTime.asSeconds();
 }
 
 void glb::EnemyShip::collide(GameObject* const other)
@@ -27,4 +41,9 @@ void glb::EnemyShip::draw(GameContext& context)
 {
     shape.setPosition(position);
     context.draw(shape);
+}
+
+void glb::EnemyShip::setFollowTarget(const GameObject* const targetToFollow)
+{
+    followTarget = targetToFollow;
 }

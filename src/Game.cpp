@@ -1,6 +1,6 @@
 #include "Game.hpp"
 
-void addEnemyShips(glb::GameContext& context);
+void addEnemyShips(glb::GameContext& context, const glb::GameObject* const playerShip);
 void addDebris(glb::GameContext& context);
 
 int glb::Game::Run()
@@ -25,12 +25,12 @@ int glb::Game::Run()
 
     auto playerWeapon = std::make_unique<PlayerWeapon>(*playerShip.get());
 
+    addEnemyShips(context, playerShip.get());
+    addDebris(context);
+
     context.add(std::move(camera));
     context.add(std::move(playerShip));
     context.add(std::move(playerWeapon));
-
-    addEnemyShips(context);
-    addDebris(context);
 
     while (window.isOpen())
     {
@@ -54,11 +54,12 @@ int glb::Game::Run()
     return 0;
 }
 
-void addEnemyShips(glb::GameContext& context)
+void addEnemyShips(glb::GameContext& context, const glb::GameObject* const playerShip)
 {
     auto enemyShip = std::make_unique<glb::EnemyShip>();
     enemyShip->position.x = -100.f;
     enemyShip->position.y = -100.f;
+    enemyShip->setFollowTarget(playerShip);
     context.add(std::move(enemyShip));
 
     enemyShip = std::make_unique<glb::EnemyShip>();

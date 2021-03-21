@@ -5,6 +5,7 @@
 #include "GameContext.hpp"
 #include "GameObject.hpp"
 #include "EnemyHitAnimation.hpp"
+#include "Vector2Utility.hpp"
 
 namespace glb
 {
@@ -17,8 +18,16 @@ namespace glb
             void draw(GameContext& context);
             void collide(GameObject* const);
 
+            void setFollowTarget(const GameObject* const);
+
         private:
             sf::RectangleShape shape;
             EnemyHitAnimation hitAnim;
+            const GameObject* followTarget;
+
+            sf::Vector2f velocity;
+            const float maxSpeed = 500.f;
+            const float acceleration = 400.f;
+            const float drag = 0.20f;
     };
 }

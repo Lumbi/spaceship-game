@@ -30,6 +30,12 @@ namespace glb
         }
 
         template<typename T>
+        sf::Vector2<T> unit(const sf::Vector2<T>& vector2)
+        {
+            return vector2 / magnitude(vector2);
+        }
+
+        template<typename T>
         T angle(const sf::Vector2<T>& vector2)
         {
             return static_cast<T>(90) + atan2(vector2.y, vector2.x) * static_cast<T>(180) / M_PI;
