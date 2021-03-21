@@ -1,4 +1,9 @@
 #include "PlayerBullet.hpp"
+#include "PlayerShip.hpp"
+#include "Collider.hpp"
+#include "EnemyShip.hpp"
+#include "Debris.hpp"
+#include "Vector2Utility.hpp"
 
 glb::PlayerBullet::PlayerBullet(const PlayerShip& playerShip)
     :

@@ -65,11 +65,13 @@ void addEnemyShips(glb::GameContext& context, const glb::GameObject* const playe
     enemyShip = std::make_unique<glb::EnemyShip>();
     enemyShip->position.x = 250.f;
     enemyShip->position.y = 130.f;
+    enemyShip->setFollowTarget(playerShip);
     context.add(std::move(enemyShip));
 
     enemyShip = std::make_unique<glb::EnemyShip>();
     enemyShip->position.x = -50.f;
     enemyShip->position.y = -200.f;
+    enemyShip->setFollowTarget(playerShip);
     context.add(std::move(enemyShip));
 }
 

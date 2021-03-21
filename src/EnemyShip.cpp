@@ -3,7 +3,8 @@
 glb::EnemyShip::EnemyShip()
     : GameObject(sf::Vector2f()),
       shape(sf::Vector2f(40.f, 40.f)),
-      hitAnim(shape)
+      hitAnim(shape),
+      followTarget(nullptr)
 {
     shape.setFillColor(sf::Color::Transparent);
     shape.setOutlineColor(sf::Color::Red);
@@ -11,6 +12,12 @@ glb::EnemyShip::EnemyShip()
     shape.setOrigin(shape.getSize() / 2.f);
 
     collider = std::make_unique<ShapeCollider>(shape);
+}
+
+void glb::EnemyShip::start(GameContext& context)
+{
+    auto weapon = std::make_unique<EnemyWeapon>(this, followTarget);
+    context.add(std::move(weapon));
 }
 
 void glb::EnemyShip::update(GameContext& context, const sf::Time& elapsedTime)
@@ -34,7 +41,11 @@ void glb::EnemyShip::update(GameContext& context, const sf::Time& elapsedTime)
 
 void glb::EnemyShip::collide(GameObject* const other)
 {
-    hitAnim.play();
+    auto playerBullet = dynamic_cast<PlayerBullet* const>(other);
+    if (playerBullet)
+    {
+        hitAnim.play();
+    }
 }
 
 void glb::EnemyShip::draw(GameContext& context)

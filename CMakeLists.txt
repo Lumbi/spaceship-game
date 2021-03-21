@@ -23,6 +23,8 @@ set(SRC
     src/PlayerShip.cpp
     src/PlayerBullet.cpp
     src/EnemyShip.cpp
+    src/EnemyBullet.cpp
+    src/EnemyWeapon.cpp
     src/Debris.cpp
     src/EnemyHitAnimation.cpp
 )
