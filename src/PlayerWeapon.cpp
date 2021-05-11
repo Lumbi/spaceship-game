@@ -11,7 +11,7 @@ glb::PlayerWeapon::PlayerWeapon(const PlayerShip& playerShip)
 void glb::PlayerWeapon::update(GameContext& context, const sf::Time& elapsedTime)
 {
     timeElapsedSinceLastFire += elapsedTime.asSeconds();
-    if (context.keyboard.isDown(sf::Keyboard::Z))
+    if (context.mouse.isLeftButtonDown())
     {
         if (timeElapsedSinceLastFire > 1.f / fireRate)
         {

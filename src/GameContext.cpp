@@ -2,9 +2,14 @@
 
 glb::GameContext::GameContext(sf::RenderWindow& window)
     : window(window),
-      bloomEffect(window)
+      bloomEffect(window),
+      mouse(*this)
 {
     render.create(window.getSize().x, window.getSize().y);
+    debugFont.loadFromFile("../resources/Arial.ttf"); // TODO: Copy resources and fix path
+    debugText.setFont(debugFont);
+    debugText.setColor(sf::Color::White);
+    debugText.setPosition(100, 100);
 }
 
 void glb::GameContext::update(const sf::Time& time)
@@ -63,6 +68,7 @@ void glb::GameContext::draw()
     }
     render.display();
     bloomEffect.render(render.getTexture());
+    window.draw(debugText);
     window.display();
 }
 
@@ -76,7 +82,24 @@ void glb::GameContext::setView(const sf::View& view)
     render.setView(view);
 }
 
+sf::Vector2f glb::GameContext::toWorldPosition(const sf::Vector2i& windowPosition) const
+{
+    return render.mapPixelToCoords(windowPosition);
+}
+
 void glb::GameContext::add(std::unique_ptr<GameObject> gameObject)
 {
     gameObjectsToAdd.push_back(std::move(gameObject));
+}
+
+void glb::GameContext::debugAppend(const std::string& string)
+{
+    debugStream << string;
+    debugText.setString(debugStream.str());
+}
+
+void glb::GameContext::debugClear()
+{
+    debugStream.str("");
+    debugText.setString("");
 }

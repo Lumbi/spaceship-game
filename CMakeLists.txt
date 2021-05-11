@@ -15,6 +15,7 @@ set(SRC
     src/Game.cpp
     src/Keyboard.cpp
     src/GameContext.cpp
+    src/Mouse.cpp
     src/Collider.cpp
     src/Camera.cpp
     src/ShapeSprite.cpp

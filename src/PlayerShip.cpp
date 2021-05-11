@@ -16,24 +16,47 @@ glb::PlayerShip::PlayerShip()
 
 void glb::PlayerShip::update(GameContext& context, const sf::Time& elapsedTime)
 {
-    if (context.keyboard.isDown(sf::Keyboard::Left)) {
-        rotation -= angularVelocity * elapsedTime.asSeconds();
-    }
+    updateControls(context, elapsedTime);
+    glb::Vector2::clamp(velocity, 0.f, maxSpeed);
+    position += velocity * elapsedTime.asSeconds();
+}
 
-    if (context.keyboard.isDown(sf::Keyboard::Right)) {
-        rotation += angularVelocity * elapsedTime.asSeconds();
-    }
+void glb::PlayerShip::updateControls(GameContext& context, const sf::Time& elapsedTime)
+{
+    // Update rotation
+    sf::Vector2f mousePosition = context.mouse.getWorldPosition();
+    sf::Vector2f vectorToMouse = mousePosition - position;
+    rotation = glb::Vector2::angle(vectorToMouse);
 
-    if (context.keyboard.isDown(sf::Keyboard::Up))
+    // Update velocity
+    bool isMoving = false;
+    sf::Vector2f direction = glb::Vector2::zero<float>;
+    if (context.keyboard.isDown(sf::Keyboard::W))
     {
-        position.x -= 1.0f * elapsedTime.asSeconds();
-        sf::Vector2f direction = glb::Vector2::unit(rotation);
+        isMoving = true;
+        direction += glb::Vector2::up<float>;
+    }
+    if (context.keyboard.isDown(sf::Keyboard::S))
+    {
+        isMoving = true;
+        direction += glb::Vector2::down<float>;
+    }
+    if (context.keyboard.isDown(sf::Keyboard::A))
+    {
+        isMoving = true;
+        direction += glb::Vector2::left<float>;
+    }
+    if (context.keyboard.isDown(sf::Keyboard::D))
+    {
+        isMoving = true;
+        direction += glb::Vector2::right<float>;
+    }
+
+    if (isMoving) {
         velocity += direction * acceleration * elapsedTime.asSeconds();
     } else {
         velocity -= velocity * drag * elapsedTime.asSeconds();
     }
-    glb::Vector2::clamp(velocity, 0.f, maxSpeed);
-    position += velocity * elapsedTime.asSeconds();
 }
 
 void glb::PlayerShip::draw(GameContext& context)

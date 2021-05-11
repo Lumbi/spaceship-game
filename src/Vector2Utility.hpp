@@ -8,7 +8,19 @@ namespace glb
     namespace Vector2
     {
         template<typename T>
+        static const sf::Vector2<T> zero(static_cast<T>(0), static_cast<T>(0));
+
+        template<typename T>
         static const sf::Vector2<T> up(static_cast<T>(0), static_cast<T>(-1));
+
+        template<typename T>
+        static const sf::Vector2<T> down(static_cast<T>(0), static_cast<T>(1));
+
+        template<typename T>
+        static const sf::Vector2<T> left(static_cast<T>(-1), static_cast<T>(0));
+
+        template<typename T>
+        static const sf::Vector2<T> right(static_cast<T>(1), static_cast<T>(0));
 
         template<typename T>
         static sf::Vector2<T> unit(const T angleDeg = 0.f)
