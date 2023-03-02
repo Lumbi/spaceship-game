@@ -75,7 +75,7 @@ glb::BloomEffect::BloomEffect(sf::RenderTarget& renderTarget)
 void glb::BloomEffect::render(const sf::Texture& texture)
 {
     bool horizontal = true, firstIteration = true;
-    int blurPassCount = 3;
+    int blurPassCount = 5;
     blurShader.setUniform("tex_width", float(texture.getSize().x));
     blurShader.setUniform("tex_height", float(texture.getSize().y));
 
