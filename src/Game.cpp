@@ -6,6 +6,8 @@ void addDebris(glb::GameContext& context);
 int glb::Game::Run()
 {
     const float windowWidth = 1920, windowHeight = 1080;
+    const float target_fps = 60.f;
+    const float target_time_per_frame = 1.f / target_fps;
     sf::RenderWindow window(
         sf::VideoMode(windowWidth, windowHeight),
         "Game",
@@ -34,7 +36,7 @@ int glb::Game::Run()
 
     while (window.isOpen())
     {
-        sf::Time elapsed = clock.restart();
+        sf::Time delta_time = clock.restart();
 
         sf::Event event;
         while (window.pollEvent(event))
@@ -47,8 +49,13 @@ int glb::Game::Run()
             }
         }
 
-        context.update(elapsed);
+        context.update(delta_time);
         context.draw();
+
+        float time = clock.getElapsedTime().asSeconds();
+        if (time < target_time_per_frame) {
+            sf::sleep(sf::seconds(target_time_per_frame - time));
+        }
     }
 
     return 0;
