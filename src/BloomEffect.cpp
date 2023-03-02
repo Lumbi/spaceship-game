@@ -39,8 +39,8 @@ glb::BloomEffect::BloomEffect(sf::RenderTarget& renderTarget)
             {
                 for(int i = 1; i < 5; ++i)
                 {
-                    sum += texture2D(texture, gl_TexCoord[0].xy + vec2(texel_size.y * float(i), 0.0)).rgb * weight[i];
-                    sum += texture2D(texture, gl_TexCoord[0].xy - vec2(texel_size.y * float(i), 0.0)).rgb * weight[i];
+                    sum += texture2D(texture, gl_TexCoord[0].xy + vec2(0.0, texel_size.y * float(i))).rgb * weight[i];
+                    sum += texture2D(texture, gl_TexCoord[0].xy - vec2(0.0, texel_size.y * float(i))).rgb * weight[i];
                 }
             }
             gl_FragColor = vec4(sum, 1.0);
@@ -74,10 +74,6 @@ glb::BloomEffect::BloomEffect(sf::RenderTarget& renderTarget)
 
 void glb::BloomEffect::render(const sf::Texture& texture)
 {
-    // NOTE: I don't think this works properly.
-    //       The end result is a strange but cool horizontal blur.
-    //       Right now I'd like to work on more important gameplay
-    //       mechanics so I'll leave the blur to that.
     bool horizontal = true, firstIteration = true;
     int blurPassCount = 3;
     blurShader.setUniform("tex_width", float(texture.getSize().x));
