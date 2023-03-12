@@ -4,6 +4,7 @@ glb::EnemyShip::EnemyShip()
     : GameObject(sf::Vector2f()),
       shape(sf::Vector2f(40.f, 40.f)),
       hitAnim(shape),
+      destroyAnim(shape),
       followTarget(nullptr)
 {
     shape.setFillColor(sf::Color::Transparent);
@@ -22,7 +23,13 @@ void glb::EnemyShip::start(GameContext& context)
 
 void glb::EnemyShip::update(GameContext& context, const sf::Time& elapsedTime)
 {
-    hitAnim.animate(elapsedTime);
+    if (isDead()) {
+        destroyAnim.animate(elapsedTime);
+        if (destroyAnim.isCompleted()) {
+            kill();
+        }
+        return;
+    }
 
     // Follow player
     if (followTarget) {
@@ -37,14 +44,18 @@ void glb::EnemyShip::update(GameContext& context, const sf::Time& elapsedTime)
 
     glb::Vector2::clamp(velocity, 0.f, maxSpeed);
     position += velocity * elapsedTime.asSeconds();
+
+    hitAnim.animate(elapsedTime);
 }
 
 void glb::EnemyShip::collide(GameObject* const other)
 {
+    if (isDead()) { return; }
     auto playerBullet = dynamic_cast<PlayerBullet* const>(other);
     if (playerBullet)
     {
         hitAnim.play();
+        takeDamage(10);
     }
 }
 
@@ -57,4 +68,11 @@ void glb::EnemyShip::draw(GameContext& context)
 void glb::EnemyShip::setFollowTarget(const GameObject* const targetToFollow)
 {
     followTarget = targetToFollow;
+}
+
+void glb::EnemyShip::takeDamage(int damage)
+{
+    if (isDead()) { return; }
+    health -= damage;
+    if (isDead()) { destroyAnim.play(); }
 }

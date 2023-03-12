@@ -28,6 +28,7 @@ set(SRC
     src/EnemyWeapon.cpp
     src/Debris.cpp
     src/EnemyHitAnimation.cpp
+    src/EnemyDestroyAnimation.cpp
 )
 add_executable(${PROJECT_NAME} ${SRC})
 
